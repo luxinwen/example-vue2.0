@@ -94,7 +94,7 @@
 </template>
 
 <script>
-  import { GoodsList, TipsOption, AjaxUrl } from './../js/configParams';
+  import { GoodsList, TipsOption, AjaxUrl } from './../js/configPublic';
 
   module.exports = {
     data() {

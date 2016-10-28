@@ -57,7 +57,7 @@
 </template>
 
 <script>
-  import { TipsOption } from './../js/configParams';
+  import { TipsOption } from './../js/configPublic';
 
   module.exports = {
     data() {
