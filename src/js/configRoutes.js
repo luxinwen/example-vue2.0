@@ -1,6 +1,7 @@
 // 页面组件引入
 import GoodsList from './../vue/GoodsList';
 import GoodsEdit from './../vue/GoodsEdit';
+import GoodsAd from './../vue/GoodsAd';
 
 // 路由项配置
 export const routes = [
@@ -15,12 +16,17 @@ export const routes = [
     component: GoodsEdit
   },
   {
+    path: '/goods/ad',
+    name: 'GoodsAd',
+    component: GoodsAd
+  },
+  {
     path: '/tests',
     component: {
       template: '<p>{{ $route }}</p>'
     }
   },
-
+  // 默认跳转链接
   {
     path: '*',
     redirect: '/goods/list'
@@ -42,6 +48,12 @@ export const MenuList = [
         text: '新增商品',
         link: {
           path: '/goods/edit'
+        }
+      },
+      {
+        text: '广告设置',
+        link: {
+          path: '/goods/ad'
         }
       }
     ]
