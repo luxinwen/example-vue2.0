@@ -1,19 +1,44 @@
 @import './color.less';
-
+html {
+  font-size: 10px;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
 body {
   margin: 0;
-  padding: 0;
   font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
   background-color: @bodyBg;
   color: @fontColor;
 }
-// a {
-//   color: @fontColor;
-//   text-decoration: none;
-//   &:hover {
-//     color: @fontHoverColor;
-//   }
-// }
+input,
+button,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+a {
+  color: @fontLinkColor;
+  text-decoration: none;
+  &:hover,
+  &:focus {
+    color: @fontHoverColor;
+    text-decoration: underline;
+  }
+  &:focus {
+    outline: thin dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+  }
+}
+figure {
+  margin: 0;
+}
+img {
+  vertical-align: middle;
+}
 .fullWidth {
   width: 100%
 }
@@ -22,6 +47,16 @@ body {
 }
 .text-right {
   text-align: right;
+}
+.help-block {
+  display: block;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  color: @helpFontColor;
+}
+.help-inline {
+  margin-left: 10px;
+  color: @helpFontColor;
 }
 .noneMargin,
 .noneMargin .el-form-item {
@@ -34,7 +69,7 @@ body {
   margin-bottom: 20px;
   background-color: #fff;
   border: 1px solid @borderColor;
-  border-radius: 4px;
+  border-radius: @borderRadius;
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
           box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
   .panel-body {
@@ -44,8 +79,8 @@ body {
     padding: 10px 15px;
     background-color: @panelHeadBg;
     border-bottom: 1px solid @borderColor;
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
+    border-top-left-radius: @borderRadius - 1;
+    border-top-right-radius: @borderRadius - 1;
     color: @panelHeadFontColor;
   }
   .panel-title {
@@ -58,17 +93,46 @@ body {
     padding: 10px 15px;
     background-color: @panelHeadBg;
     border-top: 1px solid @borderColor;
-    border-bottom-right-radius: 3px;
-    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: @borderRadius - 1;
+    border-bottom-left-radius: @borderRadius - 1;
     color: @panelHeadFontColor;
   }
-  .panel-content {
+  .panel-content:not(:last-of-type) {
     margin-bottom: 15px;
-  }
-  .panel-content:last-of-type {
-    margin-bottom: 0;
   }
   .panel-btns {
     padding: 5px 0;
+  }
+}
+.content-main {
+  border: 1px solid @borderColor;
+  border-radius: @borderRadius;
+  &:not(:last-of-type) {
+    margin-bottom: 15px;
+  }
+  .content-head {
+    position: relative;
+    padding: 15px;
+    background-color: @contentHeadBg;
+    border-bottom: 1px solid @borderColor;
+    border-top-left-radius: @borderRadius - 1;
+    border-top-right-radius: @borderRadius - 1;
+  }
+  .content-title {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 14px;
+    color: inherit;
+    > i {
+      cursor: pointer;
+    }
+  }
+  .content-btns {
+    position: absolute;
+    top: 7px;
+    right: 15px;
+  }
+  .content-body {
+    padding: 15px;
   }
 }
