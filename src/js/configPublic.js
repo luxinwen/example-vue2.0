@@ -66,12 +66,12 @@ export const GoodsList = [
   }
 ];
 
-// 提示标题
+// 提示框参数
 export const TipsOption = {
   title: '提示',
   warning: {
     type: 'warning',
-    lockScroll: false
+    lockScroll: false // 默认情况下，信息提示框与v-loading一起用可能会导致body滚动条被隐藏，所以需要此设置
   },
   success: {
     type: 'success',
@@ -79,6 +79,7 @@ export const TipsOption = {
   }
 };
 
+// 接口请求路径
 export const AjaxUrl = {
   getHomePageInfo: '/Shop/ContentManagement/getHomePageInfo'
 };

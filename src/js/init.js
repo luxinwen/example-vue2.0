@@ -1,5 +1,4 @@
 import './../css/base.less';
-
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Element from 'element-ui';
@@ -42,7 +41,7 @@ if (!String.trim) {
 window.__GLOBAL__ = {
   evbus: new Vue()
 };
-__GLOBAL__.debug = true;  // 是否调试状态
+__GLOBAL__.debug = false;  // 是否调试状态
 __GLOBAL__.debugServer = 'http://10.0.53.11'; // 调试服务器
 __GLOBAL__.loading = {
   show: false
@@ -74,6 +73,12 @@ Vue.use(VueRouter);
 Vue.use(Element);
 
 Vue.mixin({
+  computed: {
+    // 返回是否正在加载中，方便按钮使用v-loading等
+    isLoading() {
+      return __GLOBAL__.loading
+    }
+  },
   methods: {
     // 封装ajax方法
     ajax(options) {

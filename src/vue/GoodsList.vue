@@ -116,7 +116,7 @@
       },
       // 删除数据
       delGoods(row, column) {
-        this.$confirm('是否确定删除该数据？', TipsOption.title, TipsOption.warning).then(() => {
+        this.$confirm('是否确定删除？', TipsOption.title, TipsOption.warning).then(() => {
           this.showLoading();
           setTimeout(() => {
             this.hideLoading();
@@ -141,10 +141,18 @@
         this.multipleSelection = val;
         console.log(this.multipleSelection);
       },
+      // 获取初始数据
       getData() {
+        this.GoodsList = GoodsList;
+        this.addIndex(this.GoodsList);
+        return;
+
         this.ajax({
           url: AjaxUrl.getHomePageInfo
+          // error: function() {} // 当接口成功返回但CODE不等于S0A00000时调用然后不进行默认处理，默认是弹出提示框
+          // hideLoading: true // 如果需要隐藏loading框，则设置值为true，默认是false
         }).done((data) => {
+          // 此处仅需要对CODE=S0A00000时进行处理
           if (data.RETURN_CODE == 'S0A00000') {
             this.GoodsList = GoodsList;
             this.addIndex(this.GoodsList);

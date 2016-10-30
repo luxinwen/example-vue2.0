@@ -48,7 +48,7 @@
     </div>
     <div class="panel-footer">
       <div class="panel-btns">
-        <el-button type="primary" @click.native.prevent="onSubmit" :loading="loading">保存并发布</el-button>
+        <el-button type="primary" @click.native.prevent="onSubmit" :loading="isLoading.show">保存并发布</el-button>
         <el-button type="danger" @click.native="onReset">重置</el-button>
         <el-button type="danger" @click.native="onCancel">取消</el-button>
       </div>
@@ -85,13 +85,14 @@
         }, {
           value: '选项5',
           label: '北京烤鸭'
-        }],
-        loading: false
+        }]
       }
     },
     methods: {
+      // 保存并发布
       onSubmit() {
         console.log(this.form);
+        // 注意：填写框需要进行trim处理，选择框和下拉框则不需要
         if (!this.form.name.trim()) {
           this.$alert('请填写活动名称', TipsOption.title, TipsOption.warning);
           return false;
@@ -122,8 +123,11 @@
               });
             });
           }, 2000);
+        }).catch(() => {
+          // 取消按钮事件
         });
       },
+      // 重置
       onReset() {
         this.$confirm('是否确定重置？', TipsOption.title, TipsOption.warning).then(() => {
           this.form.name = '';
@@ -132,13 +136,18 @@
           this.form.time = '';
           this.form.radio = '';
           this.form.brand = '';
+        }).catch(() => {
+          // 取消按钮事件
         });
       },
+      // 取消
       onCancel() {
         this.$confirm('是否确定取消？', TipsOption.title, TipsOption.warning).then(() => {
           this.$router.push({
             name: 'GoodsList'
           });
+        }).catch(() => {
+          // 取消按钮事件
         });
       }
     }
