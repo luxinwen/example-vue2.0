@@ -24,7 +24,7 @@
                 </el-select>
               </el-form-item>
               <el-form-item>
-                <el-button type="primary">查询</el-button>
+                <el-button type="info">查询</el-button>
               </el-form-item>
             </el-form>
           </el-col>
@@ -34,7 +34,7 @@
         <el-table
           :data="GoodsList"
           selection-mode="multiple"
-          @selectionchange="selectionChange"
+          @selection-change="selectionChange"
           border
           class="fullWidth">
           <el-table-column
@@ -81,8 +81,8 @@
       </div>
       <div class="panel-content text-right">
         <el-pagination
-          @sizechange="sizeChange"
-          @currentchange="currentChange"
+          @size-change="sizeChange"
+          @current-change="currentChange"
           :current-page="5"
           :page-size="20"
           layout="total, prev, pager, next, jumper"
