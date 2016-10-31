@@ -101,9 +101,7 @@ Vue.mixin({
           var data = data.RESPONSE;
           if (data.RETURN_CODE != 'S0A00000') {
             console.log('err::', data.RETURN_DESC);
-            if (options.error) {
-              options.error(data);
-            } else {
+            if (!options.hideError) {
               this.$alert(data.RETURN_DESC, TipsOption.title, TipsOption.warning);
             }
           }

@@ -149,10 +149,10 @@
 
         this.ajax({
           url: AjaxUrl.getHomePageInfo
-          // error: function() {} // 当接口成功返回但CODE不等于S0A00000时调用然后不进行默认处理，默认是弹出提示框
+          // hideError: true // 如果需要隐藏RETURN_CODE != 'S0A00000'的提示框，则设置值为true，默认是false
           // hideLoading: true // 如果需要隐藏loading框，则设置值为true，默认是false
         }).done((data) => {
-          // 此处仅需要对CODE=S0A00000时进行处理
+          // 此处一般仅需要对CODE=S0A00000时进行处理
           if (data.RETURN_CODE == 'S0A00000') {
             this.GoodsList = GoodsList;
             this.addIndex(this.GoodsList);
