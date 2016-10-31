@@ -4,7 +4,7 @@
 <template>
   <div class="content-main">
     <div class="content-head">
-      <h4 class="content-title"><i :class="[isShow ? 'el-icon-arrow-up' : 'el-icon-arrow-down']" @click="toggle"></i> 广告模块{{ index + 1 }}</h4>
+      <h4 class="content-title"><i :class="[isShow ? 'el-icon-arrow-down' : 'el-icon-arrow-right']" @click="toggle"></i> 广告模块{{ index + 1 }}</h4>
       <div class="content-btns">
         <el-button icon="caret-top" @click.native="$emit('up')" :disabled="isFirst">上移</el-button>
         <el-button icon="caret-bottom" @click.native="$emit('down')" :disabled="isLast">下移</el-button>
@@ -30,10 +30,26 @@
 <script>
   module.exports = {
     props: {
-      adCellData: Object,
-      index: Number,
-      isFirst: Boolean,
-      isLast: Boolean
+      adCellData: {
+        type: Object,
+        default: {
+          title: '',
+          url: '',
+          desc: ''
+        }
+      },
+      index: {
+        type: Number,
+        default: 0
+      },
+      isFirst: {
+        type: Boolean,
+        default: false
+      },
+      isLast: {
+        type: Boolean,
+        default: false
+      }
     },
     data() {
       return {
@@ -41,6 +57,7 @@
       }
     },
     methods: {
+      // 切换显示隐藏
       toggle() {
         this.isShow = !this.isShow
       }

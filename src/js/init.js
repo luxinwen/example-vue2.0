@@ -110,9 +110,11 @@ Vue.mixin({
           throw new Error('err::', e);
         }
       }).fail((xhr, textStatus, error) => {
+        console.log('fail::', textStatus, error);
         this.$alert('服务器错误::' + textStatus + ' ' + error, TipsOption.title, TipsOption.warning);
         defer.reject(arguments);
       }).catch((e) => {
+        console.log('catch::', e);
         this.$alert('网络异常，请稍后再试', TipsOption.title, TipsOption.warning);
         defer.reject(arguments);
       }).always(() => {

@@ -49,7 +49,7 @@
     <div class="panel-footer">
       <div class="panel-btns">
         <el-button type="primary" @click.native.prevent="onSubmit" :loading="isLoading.show">保存并发布</el-button>
-        <el-button type="danger" @click.native="onReset">重置</el-button>
+        <el-button type="success" @click.native="onReset">重置</el-button>
         <el-button type="danger" @click.native="onCancel">取消</el-button>
       </div>
     </div>

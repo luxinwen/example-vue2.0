@@ -9,15 +9,19 @@
       z-index: 499;
       top: 0;
       left: 0;
-      width: 100%;
+      right: 0;
       height: 70px;
       line-height: 70px;
+      padding: 0 20px;
       background-color: @headBg;
       color: @headFontColor;
       h1 {
         margin: 0;
-        padding-left: 20px;
         font-size: 24px;
+      }
+      .user-info {
+        padding-right: 10px;
+        font-size: 16px;
       }
     }
     .sidebar {
@@ -42,7 +46,16 @@
 <template>
   <div id="app" class="wrapper" v-loading.fullscreen="loading.show">
     <div class="header">
-      <h1>后台管理系统</h1>
+      <el-row>
+        <el-col :span="12">
+          <h1>后台管理系统</h1>
+        </el-col>
+        <el-col :span="12" class="text-right">
+          <span class="user-info">hi, user</span>
+          <el-button>修改密码</el-button>
+          <el-button @click.native="onLogout">退出登录</el-button>
+        </el-col>
+      </el-row>
     </div>
 
     <div class="sidebar">
@@ -72,6 +85,7 @@
 
 <script>
   import { MenuList } from './../js/configRoutes';
+  import { TipsOption } from './../js/configPublic';
 
   module.exports = {
     data() {
@@ -91,6 +105,22 @@
           });
         });
         return str;
+      }
+    },
+    methods: {
+      // 退出登录
+      onLogout() {
+        this.$confirm('是否确定退出登录？', TipsOption.title, TipsOption.warning).then(() => {
+          this.showLoading();
+          setTimeout(() => {
+            this.hideLoading();
+            this.$router.push({
+              name: 'GoodsList'
+            });
+          }, 2000);
+        }).catch(() => {
+          //
+        });
       }
     }
   };
