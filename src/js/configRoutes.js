@@ -21,6 +21,13 @@ export const routes = [
     component: GoodsAd
   },
   {
+    path: '/user/changepwd',
+    name: 'UserChangePwd',
+    component: {
+      template: '<p>change pwd</p>'
+    }
+  },
+  {
     path: '/tests',
     component: {
       template: '<p>{{ $route }}</p>'
