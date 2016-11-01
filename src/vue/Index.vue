@@ -30,14 +30,14 @@
       top: 70px;
       bottom: 0;
       left: 0;
-      width: 200px;
+      width: 250px;
       background-color: @sidebarBg;
       border-right: 1px solid @borderColor;
       overflow: auto;
     }
     .main-content {
       margin-top: 70px;
-      margin-left: 200px;
+      margin-left: 250px;
       padding: 20px 20px 0;
     }
   }
@@ -52,7 +52,7 @@
         </el-col>
         <el-col :span="12" class="text-right">
           <span class="user-info">hi, user</span>
-          <el-button @click.native="onChange">修改密码</el-button>
+          <el-button>修改密码</el-button>
           <el-button @click.native="onLogout">退出登录</el-button>
         </el-col>
       </el-row>
@@ -96,7 +96,7 @@
     },
     computed: {
       defaultActive() {
-        var str = '0';
+        var str = "0-0";
         this.MenuList.forEach((menu, index) => {
           menu.body.forEach((item, iIndex) => {
             if (this.$route.path.indexOf(item.link.path) != -1) {
@@ -108,12 +108,6 @@
       }
     },
     methods: {
-      // 修改密码
-      onChange() {
-        this.$router.push({
-          name: 'UserChangePwd'
-        });
-      },
       // 退出登录
       onLogout() {
         this.$confirm('是否确定退出登录？', TipsOption.title, TipsOption.warning).then(() => {

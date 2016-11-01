@@ -51,7 +51,7 @@
       AdCell
     },
     methods: {
-      // 新增数据
+      // 新增广告
       addAd() {
         if (this.AdList.length >= 10) {
           this.$alert('最多只能添加10个广告', TipsOption.title, TipsOption.warning);
@@ -61,7 +61,7 @@
           this.AdList.push(newData);
         }
       },
-      // 删除数据
+      // 删除广告
       removeAd(index) {
         if (this.AdList.length <= 1) {
           this.$alert('最少需要保留一个广告模块', TipsOption.title, TipsOption.warning);
@@ -79,14 +79,14 @@
         let temp = this.AdList.splice(current, 1)[0];
         this.AdList.splice(next, 0, temp);
       },
-      // 上移数据
+      // 上移广告
       upAd(index) {
         if (index == 0) {
           return;
         }
         this.order(index, index - 1);
       },
-      // 下移数据
+      // 下移广告
       downAd(index) {
         if (index == this.AdList.length - 1) {
           return;
