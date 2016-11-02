@@ -33,7 +33,6 @@
 </template>
 
 <script>
-  import { TipsOption } from './../js/configPublic';
   import AdCell from './GoodsAdCell';
 
   module.exports = {
@@ -54,7 +53,7 @@
       // 新增数据
       addAd() {
         if (this.AdList.length >= 10) {
-          this.$alert('最多只能添加10个广告', TipsOption.title, TipsOption.warning);
+          this.alert('最多只能添加10个广告');
           return;
         } else {
           let newData = Object.assign({}, this.AdData);
@@ -64,10 +63,10 @@
       // 删除数据
       removeAd(index) {
         if (this.AdList.length <= 1) {
-          this.$alert('最少需要保留一个广告模块', TipsOption.title, TipsOption.warning);
+          this.alert('最少需要保留一个广告模块');
           return;
         } else {
-          this.$confirm('是否确定删除？', TipsOption.title, TipsOption.warning).then(() => {
+          this.confirm('是否确定删除？').then(() => {
             this.AdList.splice(index, 1);
           }).catch(() => {
             // 取消按钮事件
@@ -96,29 +95,29 @@
       // 保存并发布
       onSubmit() {
         if (!this.AdList.length) {
-          this.$alert('请先新增广告', TipsOption.title, TipsOption.warning);
+          this.alert('请先新增广告');
           return false;
         }
         for (let i = 0, l = this.AdList.length; i < l; i++) {
           let item = this.AdList[i];
           if (!item.title.trim()) {
-            this.$alert('请先填写广告模块' + (i + 1) + '的标题', TipsOption.title, TipsOption.warning);
+            this.alert('请先填写广告模块' + (i + 1) + '的标题');
             return false;
           }
           if (!item.url.trim()) {
-            this.$alert('请先填写广告模块' + (i + 1) + '的链接', TipsOption.title, TipsOption.warning);
+            this.alert('请先填写广告模块' + (i + 1) + '的链接');
             return false;
           }
           if (!item.desc.trim()) {
-            this.$alert('请先填写广告模块' + (i + 1) + '的描述', TipsOption.title, TipsOption.warning);
+            this.alert('请先填写广告模块' + (i + 1) + '的描述');
             return false;
           }
         }
-        this.$confirm('是否确定保存并发布？', TipsOption.title, TipsOption.warning).then(() => {
+        this.confirm('是否确定保存并发布？').then(() => {
           this.showLoading();
           setTimeout(() => {
             this.hideLoading();
-            this.$alert('保存并发布成功', TipsOption.title, TipsOption.success).then(() => {
+            this.alert('保存并发布成功', 'success').then(() => {
               this.$router.push({
                 name: 'GoodsList'
               });

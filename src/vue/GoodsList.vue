@@ -94,7 +94,7 @@
 </template>
 
 <script>
-  import { GoodsList, TipsOption, AjaxUrl } from './../js/configPublic';
+  import { GoodsList, AjaxUrl } from './../js/configPublic';
 
   module.exports = {
     data() {
@@ -116,13 +116,13 @@
       },
       // 删除数据
       delGoods(row, column) {
-        this.$confirm('是否确定删除？', TipsOption.title, TipsOption.warning).then(() => {
+        this.confirm('是否确定删除？').then(() => {
           this.showLoading();
           setTimeout(() => {
             this.hideLoading();
             this.GoodsList.splice(row.index, 1);
             this.addIndex(this.GoodsList);
-            this.$alert('删除成功', TipsOption.title, TipsOption.success);
+            this.alert('删除成功', 'success');
           }, 2000);
         }).catch(() => {
           // 取消按钮事件

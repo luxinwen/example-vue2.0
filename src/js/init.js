@@ -3,7 +3,6 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Element from 'element-ui';
 import { routes } from './configRoutes';
-import { TipsOption } from './configPublic';
 import Index from './../vue/Index';
 
 if (!Date.prototype.Format) {
@@ -102,7 +101,7 @@ Vue.mixin({
           if (data.RETURN_CODE != 'S0A00000') {
             console.log('err::', data.RETURN_DESC);
             if (!options.hideError) {
-              this.$alert(data.RETURN_DESC, TipsOption.title, TipsOption.warning);
+              this.alert(data.RETURN_DESC);
             }
           }
           defer.resolve(data);  //此句如果写在data.RETURN_CODE='S0A00000'里面，则当!='S0A00000'时，无法执行done、fail、always函数
@@ -111,11 +110,11 @@ Vue.mixin({
         }
       }).fail((xhr, textStatus, error) => {
         console.log('fail::', textStatus, error);
-        this.$alert('服务器错误::' + textStatus + ' ' + error, TipsOption.title, TipsOption.warning);
+        this.alert('服务器错误::' + textStatus + ' ' + error);
         defer.reject(arguments);
       }).catch((e) => {
         console.log('catch::', e);
-        this.$alert('网络异常，请稍后再试', TipsOption.title, TipsOption.warning);
+        this.alert('网络异常，请稍后再试');
         defer.reject(arguments);
       }).always(() => {
         if (!options.hideLoading) {
@@ -131,6 +130,22 @@ Vue.mixin({
     // 隐藏loading
     hideLoading() {
       __GLOBAL__.loading.show = false;
+    },
+    // 提示框
+    alert(text, type = 'warning') {
+      return this.$alert(text, {
+        title: '提示',
+        type: type,
+        lockScroll: false // 默认情况下，信息提示框与v-loading一起用可能会导致body滚动条被隐藏，所以需要此设置
+      });
+    },
+    // 确认框
+    confirm(text, type = 'warning') {
+      return this.$confirm(text, {
+        title: '提示',
+        type: type,
+        lockScroll: false
+      });
     }
   }
 });

@@ -57,8 +57,6 @@
 </template>
 
 <script>
-  import { TipsOption } from './../js/configPublic';
-
   module.exports = {
     data() {
       return {
@@ -94,30 +92,30 @@
         console.log(this.form);
         // 注意：填写框需要进行trim处理，选择框和下拉框则不需要
         if (!this.form.name.trim()) {
-          this.$alert('请填写活动名称', TipsOption.title, TipsOption.warning);
+          this.alert('请填写活动名称');
           return false;
         }
         if (!this.form.region) {
-          this.$alert('请选择活动区域', TipsOption.title, TipsOption.warning);
+          this.alert('请选择活动区域');
           return false;
         }
         if (!this.form.date) {
-          this.$alert('请填写活动时间', TipsOption.title, TipsOption.warning);
+          this.alert('请填写活动时间');
           return false;
         }
         if (!this.form.radio) {
-          this.$alert('请选择是否启动', TipsOption.title, TipsOption.warning);
+          this.alert('请选择是否启动');
           return false;
         }
         if (!this.form.brand) {
-          this.$alert('请选择活动品牌', TipsOption.title, TipsOption.warning);
+          this.alert('请选择活动品牌');
           return false;
         }
-        this.$confirm('是否确定保存并发布？', TipsOption.title, TipsOption.warning).then(() => {
+        this.confirm('是否确定保存并发布？').then(() => {
           this.showLoading();
           setTimeout(() => {
             this.hideLoading();
-            this.$alert('保存并发布成功', TipsOption.title, TipsOption.success).then(() => {
+            this.alert('保存并发布成功', 'success').then(() => {
               this.$router.push({
                 name: 'GoodsList'
               });
@@ -129,7 +127,7 @@
       },
       // 重置
       onReset() {
-        this.$confirm('是否确定重置？', TipsOption.title, TipsOption.warning).then(() => {
+        this.confirm('是否确定重置？').then(() => {
           this.form.name = '';
           this.form.region = '';
           this.form.date = '';
@@ -142,7 +140,7 @@
       },
       // 取消
       onCancel() {
-        this.$confirm('是否确定取消？', TipsOption.title, TipsOption.warning).then(() => {
+        this.confirm('是否确定取消？').then(() => {
           this.$router.push({
             name: 'GoodsList'
           });

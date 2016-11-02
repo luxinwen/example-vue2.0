@@ -85,7 +85,6 @@
 
 <script>
   import { MenuList } from './../js/configRoutes';
-  import { TipsOption } from './../js/configPublic';
 
   module.exports = {
     data() {
@@ -116,7 +115,7 @@
       },
       // 退出登录
       onLogout() {
-        this.$confirm('是否确定退出登录？', TipsOption.title, TipsOption.warning).then(() => {
+        this.confirm('是否确定退出登录？').then(() => {
           this.showLoading();
           setTimeout(() => {
             this.hideLoading();
