@@ -8,7 +8,7 @@
     </div>
     <div class="panel-body">
       <div class="panel-content">
-        <el-form :model="form" label-width="100px">
+        <el-form :model="form" label-width="120px">
           <el-form-item label="活动名称" required>
             <el-input v-model="form.name" :maxlength="10"></el-input>
           </el-form-item>
