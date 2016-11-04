@@ -2,7 +2,7 @@
  * 商品管理-广告设置-单元模块
  */
 <template>
-  <div class="content-main">
+  <div class="content-main list-complete-item">
     <div class="content-head">
       <h4 class="content-title"><i :class="[isShow ? 'el-icon-arrow-down' : 'el-icon-arrow-right']" @click="toggle"></i> 广告模块{{ index + 1 }}</h4>
       <div class="content-btns">

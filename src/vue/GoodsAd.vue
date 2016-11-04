@@ -12,16 +12,19 @@
         <span class="help-inline">最多只能添加10个</span>
       </div>
       <div class="panel-content" v-if="AdList.length">
-        <ad-cell
-          v-for="(item, index) in AdList"
-          :ad-cell-data="item"
-          :index="index"
-          :is-first="index == 0"
-          :is-last="index == AdList.length - 1"
-          @remove="removeAd(index)"
-          @up="upAd(index)"
-          @down="downAd(index)">
-        </ad-cell>
+        <transition-group name="list-complete" tag="div">
+          <ad-cell
+            v-for="(item, index) in AdList"
+            :key="item"
+            :ad-cell-data="item"
+            :index="index"
+            :is-first="index == 0"
+            :is-last="index == AdList.length - 1"
+            @remove="removeAd(index)"
+            @up="upAd(index)"
+            @down="downAd(index)">
+          </ad-cell>
+        </transition-group>
       </div>
     </div>
     <div class="panel-footer">
