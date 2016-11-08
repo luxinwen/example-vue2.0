@@ -4,12 +4,16 @@
 <template>
   <div class="content-main list-complete-item">
     <div class="content-head">
-      <h4 class="content-title"><i :class="[isShow ? 'el-icon-arrow-down' : 'el-icon-arrow-right']" @click="toggle"></i> 广告模块{{ index + 1 }}</h4>
-      <div class="content-btns">
-        <el-button icon="caret-top" @click.native="$emit('up')" :disabled="isFirst">上移</el-button>
-        <el-button icon="caret-bottom" @click.native="$emit('down')" :disabled="isLast">下移</el-button>
-        <el-button icon="delete" @click.native="$emit('remove')">删除</el-button>
-      </div>
+      <el-row>
+        <el-col :span="12">
+          <h4 class="content-title"><i :class="[isShow ? 'el-icon-arrow-down' : 'el-icon-arrow-right']" @click="toggle"></i> 广告模块{{ index + 1 }}</h4>
+        </el-col>
+        <el-col :span="12" class="text-right">
+          <el-button icon="caret-top" @click.native="$emit('up')" :disabled="isFirst">上移</el-button>
+          <el-button icon="caret-bottom" @click.native="$emit('down')" :disabled="isLast">下移</el-button>
+          <el-button icon="delete" @click.native="$emit('remove')">删除</el-button>
+        </el-col>
+      </el-row>
     </div>
     <div class="content-body" v-show="isShow">
       <el-form :model="adCellData" label-width="100px">
