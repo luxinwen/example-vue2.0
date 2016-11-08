@@ -24,7 +24,7 @@
                 </el-select>
               </el-form-item>
               <el-form-item>
-                <el-button type="info">查询</el-button>
+                <el-button type="info" @click="searchGoods">查询</el-button>
               </el-form-item>
             </el-form>
           </el-col>
@@ -33,7 +33,6 @@
       <div class="panel-content">
         <el-table
           :data="GoodsList"
-          selection-mode="multiple"
           @selection-change="selectionChange"
           border
           class="fullWidth">
@@ -75,7 +74,10 @@
             label="操作"
             width="100"
             align="center">
-            <div><el-button type="text" @click.native="delGoods(row, column)">删除</el-button></div>
+            <div>
+              <a class="btn-link" @click="editGoods(row)">编辑</a>
+              <a class="btn-link" @click="removeGoods(row, column, $index)">删除</a>
+            </div>
           </el-table-column>
         </el-table>
       </div>
@@ -104,24 +106,29 @@
       }
     },
     methods: {
-      // 给列表数据添加序号字段，便于删除时使用index
-      addIndex(val) {
-        val.map((item, index) => item.index = index);
-      },
       // 添加数据
       addGoods() {
         this.$router.push({
           name: 'GoodsEdit'
         });
       },
+      // 搜索数据
+      searchGoods() {
+        console.log('search');
+      },
+      // 编辑数据
+      editGoods(row) {
+        this.$router.push({
+          name: 'GoodsEdit'
+        });
+      },
       // 删除数据
-      delGoods(row, column) {
+      removeGoods(row, column, $index) {
         this.confirm('是否确定删除？').then(() => {
           this.showLoading();
           setTimeout(() => {
             this.hideLoading();
-            this.GoodsList.splice(row.index, 1);
-            this.addIndex(this.GoodsList);
+            this.GoodsList.splice($index, 1);
             this.alert('删除成功', 'success');
           }, 2000);
         }).catch(() => {
@@ -144,7 +151,6 @@
       // 获取初始数据
       getData() {
         this.GoodsList = GoodsList;
-        this.addIndex(this.GoodsList);
         return;
 
         this.ajax({
@@ -155,7 +161,6 @@
           // 此处一般仅需要对CODE=S0A00000时进行处理
           if (data.RETURN_CODE == 'S0A00000') {
             this.GoodsList = GoodsList;
-            this.addIndex(this.GoodsList);
           }
         });
       }
