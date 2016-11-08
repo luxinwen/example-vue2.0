@@ -11,6 +11,7 @@
         <el-form :model="form" label-width="120px">
           <el-form-item label="活动名称" required>
             <el-input v-model="form.name" :maxlength="10"></el-input>
+            <span class="help-block">活动名称不得超过10个字</span>
           </el-form-item>
           <el-form-item label="活动区域">
             <el-select v-model="form.region" placeholder="请选择活动区域" clearable>
